@@ -622,11 +622,6 @@ void cef_dark_window::DoDrawMenuBar(HDC hdc)
         mmi.cbSize = sizeof (mmi);
         mmi.fMask = MIIM_STATE|MIIM_ID;
         ::GetMenuItemInfo (menu, i, TRUE, &mmi);
-        
-        // Drawitem only works on ID
-        MEASUREITEMSTRUCT mis = {0};
-        mis.CtlType = ODT_MENU;
-        mis.itemID = mmi.wID;
 
         RECT itemRect;
         ::SetRectEmpty(&itemRect);
@@ -636,8 +631,7 @@ void cef_dark_window::DoDrawMenuBar(HDC hdc)
             
             // Check to make sure it's actually in the 
             //  the correct location (fixes aero drawing issue)
-            POINT pt = {itemRect.left, itemRect.top};
-            if (!CanUseAeroGlass() || ::PtInRect(&menuBarRect, pt)) {
+            if (!CanUseAeroGlass() || itemRect.top > 4) {
             
                 // Draw the menu item
                 DRAWITEMSTRUCT dis = {0};

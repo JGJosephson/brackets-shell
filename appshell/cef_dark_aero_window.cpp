@@ -397,8 +397,8 @@ void cef_dark_aero_window::ComputeMenuBarRect(RECT& rect) const
         ComputeWindowCaptionRect(rectCaption);
         GetRealClientRect(&rectClient);
 
-        rect.top = rectCaption.bottom + 1;
-        rect.bottom = rectClient.top - 1;
+        rect.top = rectCaption.bottom ;
+        rect.bottom = rectClient.top ;
 
         rect.left = rectClient.left;
         rect.right = rectClient.right;
